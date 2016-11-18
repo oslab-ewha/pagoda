@@ -11,8 +11,8 @@ This README would normally document whatever steps are necessary to get your app
 
 * Install CUDA library >= 7.5
 * Configuration
-  * To change the value of SM_NUM in common/para.h based on your GPU. 
-  * To change the path of CUDA and the value of sm (e.g. sm_35 or sm_52 ...) in common/make.config
+  ** To change the value of SM_NUM in common/para.h based on your GPU. 
+  ** To change the path of CUDA and the value of sm (e.g. sm_35 or sm_52 ...) in common/make.config
 * Dependencies
 * Database configuration
 * How to run tests
