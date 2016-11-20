@@ -20,14 +20,13 @@ static int lastEmptyTask = 0;
 static int round_count = 0;
 static int taskIndex = 0;
 
-static int barrierCount = 0;
 cudaStream_t master_kernel_stream;
 cudaStream_t runtime_stream;
 
 __global__ void masterKernel(volatile int *done, volatile int *totalScheTasks, volatile gTaskStruct *gTaskPool);
 
 void runtime_init(){
-	int i;
+  	int i;
 
   	setenv("CUDA_DEVICE_MAX_CONNECTIONS", "32", 1);
   	checkCudaErrors(cudaStreamCreate(&runtime_stream));
@@ -70,7 +69,7 @@ int taskLaunch(int paraN, ...){
   	va_list ap;
   	va_start(ap,paraN);
 
-  	while(taskIndex < (BP_NUM*BK_NUM) && terminate == 1){
+  	while(taskIndex < (BK_NUM*BP_NUM) && terminate == 1){
     		if(ccTaskPool[taskIndex].ready == 0 && ccTaskPool[taskIndex].readyId == -1){
         		// **Add here**: renew task table, set the bit of task ID on
         		// **Add here**: get_ID()
@@ -108,10 +107,9 @@ int taskLaunch(int paraN, ...){
 	        				ccTaskPool[taskIndex].para[j-inParaNum] = va_arg(ap, long*);
 	        				break;
 	      				default:
-	       	 				break;
+	        				break;
 	    			} // End switch
 			} // End for paraN
-
 			checkCudaErrors(cudaMemcpyAsync(ggTaskPool+taskIndex, ccTaskPool+taskIndex, 
 				sizeof(gTaskStruct), cudaMemcpyHostToDevice, runtime_stream)); 
         		terminate = 0; 
@@ -120,17 +118,17 @@ int taskLaunch(int paraN, ...){
 
      		if(taskIndex == (BK_NUM*BP_NUM) && round_count > 0){
 	  		ccTaskPool[lastEmptyTask].readyId = taskId;
-          		checkCudaErrors(cudaMemcpyAsync((int*)&ggTaskPool[lastEmptyTask].readyId, (int*)&ccTaskPool[lastEmptyTask].readyId,sizeof(int), cudaMemcpyHostToDevice, runtime_stream));
+          		checkCudaErrors(cudaMemcpyAsync((int*)&ggTaskPool[lastEmptyTask].readyId, 
+				(int*)&ccTaskPool[lastEmptyTask].readyId,sizeof(int), cudaMemcpyHostToDevice, runtime_stream));
 	  		checkCudaErrors(cudaStreamSynchronize(runtime_stream));
-	  		barrierCount ++;
+
 	  		round_count = 0;
      		}
-
-     		if(taskIndex == (BP_NUM*BK_NUM)){
-          		checkCudaErrors(cudaMemcpyAsync(ccTaskPool, ggTaskPool, (BP_NUM*BK_NUM)*sizeof(gTaskStruct), cudaMemcpyDeviceToHost, runtime_stream));
+     		if(taskIndex == (BK_NUM*BP_NUM)){
+          		checkCudaErrors(cudaMemcpyAsync(ccTaskPool, ggTaskPool, (BK_NUM*BP_NUM)*sizeof(gTaskStruct), 
+					cudaMemcpyDeviceToHost, runtime_stream));
           		checkCudaErrors(cudaStreamSynchronize(runtime_stream));
-			barrierCount ++;
-			taskIndex = 0;
+          		taskIndex = 0;
      		}
   	} // end while i < BK_NUM*BP_NUM
 
@@ -140,6 +138,7 @@ int taskLaunch(int paraN, ...){
 
 void waitAll(int num_tasks){
 	*totalScheTasks = 0;
+
 	ccTaskPool[lastEmptyTask].readyId = taskId;
         checkCudaErrors(cudaMemcpyAsync((int*)&ggTaskPool[lastEmptyTask].readyId, (int*)&ccTaskPool[lastEmptyTask].readyId,
                                 sizeof(int), cudaMemcpyHostToDevice, runtime_stream));
@@ -164,7 +163,7 @@ void waitAll(int num_tasks){
 void runtime_destroy(){
 
   	*done = 1;
-  	checkCudaErrors(cudaMemcpyAsync(doneDev, done, sizeof(int), cudaMemcpyHostToDevice, runtime_stream));
+ 	checkCudaErrors(cudaMemcpyAsync(doneDev, done, sizeof(int), cudaMemcpyHostToDevice, runtime_stream));
 
   	checkCudaErrors(cudaStreamSynchronize(runtime_stream));
 

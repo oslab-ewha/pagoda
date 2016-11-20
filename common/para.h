@@ -11,4 +11,7 @@
 #define inParaNum 	5			// the num. of thread, block ... params
 #define syncNum 	16 			// the number of sync Id
 #define streamNum 	1024 			// the number of cuda stream
-#define batchSize	384		
+#define maxWarp		64			// the max number of warps in one SM
+#define TDK_NUM		256			// the number of thread in a block used in rand experiment
+#define TK_NUM		(maxWarp/(TDK_NUM/warpSize)*SM_NUM)	// the number of tasks in batch used in rand experiment
+#define BT_NUM		50			// the number of batches used in rand experiment
