@@ -3,29 +3,54 @@
 echo $PWD
 
 # Compile all benchmarks
-cd matrixMul/pagoda
+cd matrixMul/pagoda_rand
 
 echo "##  Compiling matrixMul pagoda  ##"
 make clean
 make
 
 cd ..
-cd baseline
+cd cuda_rand
 echo "##  Compiling matrixMul baseline  ##"
 make clean
 make
 
+cd ..
+cd cuda_fused_rand
+echo "##  Compiling static fusion matrixMul baseline  ##"
+make clean
+make
+
+cd ..
+cd pthread
+echo "##  Compiling pthread matrixMul baseline  ##"
+make clean
+make
+
 cd ../..
-cd convolution/pagoda
+cd convolution/pagoda_rand
 echo "##  Compiling convolution pagoda  ##"
 make clean
 make
 
 cd ..
-cd baseline
+cd cuda_rand
 echo "##  Compiling convolution baseline  ##"
 make clean
 make
+
+cd ..
+cd cuda_fused
+echo "##  Compiling static fusion convolution baseline  ##"
+make clean
+make
+
+cd ..
+cd pthread
+echo "##  Compiling pthread convolution baseline  ##"
+make clean
+make
+
 
 cd ../..
 cd dct/pagoda
@@ -40,135 +65,263 @@ make clean
 make
 
 cd ../..
-cd des/pagoda
+cd des/pagoda_rand
 echo "##  Compiling des pagoda ## "
 make clean
 make
 
 cd ..
-cd baseline
+cd cuda_rand
 echo "##  Compiling des baseline  ##"
 make clean
 make
 
+cd ..
+cd cuda_fused
+echo "##  Compiling static fusion des baseline  ##"
+make clean
+make
+
+cd ..
+cd pthread
+echo "##  Compiling pthread des baseline  ##"
+make clean
+make
+
+
 cd ../..
-cd filterbank/pagoda
+cd filterbank/pagoda_rand
 echo "## Compiling filterbank pagoda ##"
 make clean
 make
 
 cd ..
-cd baseline
+cd cuda_rand
 echo "##  Compiling filterbank baseline  ##"
 make clean
 make
 
+cd ..
+cd cuda_fused
+echo "##  Compiling static fusion filterbank baseline  ##"
+make clean
+make
+
+cd ..
+cd pthread
+echo "##  Compiling pthread filterbank baseline  ##"
+make clean
+make
+
+
 cd ../..
-cd mandelbrot/pagoda
+cd mandelbrot/pagoda_rand
 echo "##  Compiling mandelbrot pagoda  ##"
 make clean
 make
 
 cd ..
-cd baseline
+cd cuda_rand
 echo "##  Compiling mandelbrot baseline  ##"
 make clean
 make
 
+cd ..
+cd cuda_fused
+echo "##  Compiling static fusion mandelbrot baseline  ##"
+make clean
+make
+
+cd ..
+cd pthread
+echo "##  Compiling pthread mandelbrot baseline  ##"
+make clean
+make
+
+
 cd ../..
-cd multiwork/pagoda
+cd multiwork/pagoda_rand
 echo "## Compiling multiwork pagoda  ##"
 make clean
 make
 
 cd ..
-cd baseline
+cd cuda_rand
 echo "##  Compiling multiwork baseline  ##"
 make clean
 make
 
-cd ../..
-cd sparseLU/pagoda
-echo "##  Compiling sparseLU pagoda  ##"
+cd ..
+cd cuda_fused
+echo "##  Compiling static fusion multiwork baseline  ##"
 make clean
 make
 
 cd ..
-cd baseline
-echo "##  Compiling sparseLU baseline  ##"
+cd pthread
+echo "##  Compiling pthread multiwork baseline  ##"
 make clean
 make
 
 cd ../../
-cd matrixMul/pagoda
-echo "# Running matrixMul Pagoda #"
+cd mandelbrot/pagoda_rand
+# Running mandelbrot Pagoda
 sh run
 
 cd ..
-cd baseline
-echo "# Running matrixMul CUDA baseline #"
+cd cuda_rand
+# Running mandelbrot CUDA baseline
+sh run
+
+cd ..
+cd cuda_fused
+# Running mandelbrot CUDA static fusion
+sh run
+
+cd ..
+cd pthread
+# Running mandelbrot pthread
+sh run
+
+
+cd ../../
+cd convolution/pagoda_rand
+# Running convolution Pagoda
+sh run
+
+cd ..
+cd cuda_rand
+# Running convolution CUDA baseline
+sh run
+
+cd ..
+cd cuda_fused
+# Running convolution CUDA static fusion
+sh run
+
+cd ..
+cd pthread
+# Running convolution pthread
+sh run
+
+cd dct/pagoda_rand
+# Running dct Pagoda
+sh run
+
+cd ..
+cd cuda_rand
+# Running dct CUDA baseline
+sh run
+
+cd ..
+cd cuda_fused
+# Running dct CUDA static fusion
+sh run
+
+cd ..
+cd pthread
+# Running dct pthread
 sh run
 
 cd ../../
-cd filterbank/pagoda
-echo "# Running filterbank Pagoda #"
+cd filterbank/pagoda_rand
+#Running filterbank Pagoda
 sh run
 
 cd ..
-cd baseline
-echo "# Running filterbank CUDA baseline #"
+cd cuda_rand
+# Running filterbank CUDA baseline
+sh run
+
+cd ..
+cd cuda_fused
+# Running filterbank CUDA static fusion
+sh run
+
+cd ..
+cd pthread
+# Running filterbank pthread
+sh run
+
+cd ../../
+cd beamformer/pagoda_rand
+# Running beamformer Pagoda
+sh run
+
+cd ..
+cd cuda_rand
+# Running beamformer CUDA baseline
+sh run
+
+cd ..
+cd cuda_fused
+# Running beamformer CUDA static fusion
+sh run
+
+cd ..
+cd pthread
+# Running beamformer pthread
+sh run
+
+cd ../../
+cd matrixMul/pagoda_rand
+# Running matrixMul Pagoda
+sh run
+
+cd ..
+cd cuda_rand
+# Running matrixMul CUDA baseline
+sh run
+
+cd ..
+cd cuda_fused_rand
+# Running matrixMul CUDA static fusion
+sh run
+
+cd ..
+cd pthread
+# Running matrixMul pthread
+sh run
+
+cd ../../
+cd des/pagoda_rand
+# Running des Pagoda
+sh run
+
+cd ..
+cd cuda_rand
+# Running des CUDA baseline
+sh run
+
+cd ..
+cd cuda_fused
+# Running des CUDA static fusion
+sh run
+
+cd ..
+cd pthread
+# Running des pthread
 sh run
 
 
 cd ../../
-cd convolution/pagoda
-echo "# Running convolution Pagoda #"
+cd multiwork/pagoda_rand
+# Running multiprogramming Pagoda
 sh run
 
 cd ..
-cd baseline
-echo "# Running convolution CUDA baseline #"
-sh run
-
-cd ../../
-cd dct/pagoda
-echo "# Running matrixMul Pagoda #"
+cd cuda_rand
+# Running multiprogramming CUDA baseline
 sh run
 
 cd ..
-cd baseline
-echo "# Running dct CUDA baseline #"
-sh run
-
-cd ../../
-cd beamformer/pagoda
-echo "# Running beamformer Pagoda #"
+cd cuda_fused
+# Running multiprogramming CUDA static fusion
 sh run
 
 cd ..
-cd baseline
-echo "# Running beamformer CUDA baseline #"
+cd pthread
+# Running multiprogramming pthread
 sh run
 
-cd ../../
-cd mandelbrot/pagoda
-echo "# Running mandelbrot Pagoda #"
-sh run
-
-cd ..
-cd baseline
-echo "# Running mandelbrot CUDA baseline #"
-sh run
-
-cd ../../
-cd multiwork/pagoda
-echo "# Running multiprogramming Pagoda #"
-sh run
-
-cd ..
-cd baseline
-echo "# Running multiprogramming CUDA baseline #"
-sh run
-
-
-echo $PWD
+echo "Completed"
