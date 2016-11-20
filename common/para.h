@@ -1,4 +1,4 @@
-#define SM_NUM 		24  			// the number of SM
+#define SM_NUM 		24  			// the number of SM (Titan X: 24, Nvidia Kelpler K40: 15)
 #define BK_NUM 		(SM_NUM*2)  		// the number of thread block
 #define TD_NUM 		1024  			// the number of thread in one thread block
 #define BP_NUM 		32 			// the number of task buffer per pool
