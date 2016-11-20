@@ -94,7 +94,8 @@ int main(){
   }
 
   // mandelbrot
-  h_task_indx = (float*)malloc(TK_NUM * sizeof(float));
+  //h_task_indx = (float*)malloc(TK_NUM * sizeof(float));
+  checkCudaErrors(cudaHostAlloc(&h_task_indx, TK_NUM *sizeof(float), NULL));
   checkCudaErrors(cudaMalloc(&d_task_indx, TK_NUM *sizeof(float)));
   for(i = 0; i < TK_NUM; i++) {
     h_task_indx[i] = (float)(i/(TK_NUM/2.0));
@@ -371,7 +372,8 @@ int main(){
   checkCudaErrors(cudaFreeHost(h_des_dsk));
   checkCudaErrors(cudaFree(d_des_dsk));
 
-  free(h_task_indx);
+  //free(h_task_indx);
+  checkCudaErrors(cudaFreeHost(h_task_indx));
 
   if(cudaDeviceReset()== cudaSuccess) printf("Reset successful\n");
 
