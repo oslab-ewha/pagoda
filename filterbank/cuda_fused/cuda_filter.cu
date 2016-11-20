@@ -172,7 +172,7 @@ int main(){
     		checkCudaErrors(cudaMemcpy(Vect_F[i], Vect_F_dev[i], num_size[i]*sizeof(float), cudaMemcpyDeviceToHost));
   	}
   	checkCudaErrors(cudaDeviceSynchronize());
-
+#if 0
 	// CPU task launch
 	printf("CPU program running\n");
         start_timer = my_timer();
@@ -199,7 +199,7 @@ int main(){
         }
 
 	if(!flag) printf("Verify successfully\n");
-
+#endif
   	/*Free Memory*/
   	for(i = 0; i < BT_NUM; i++){ 
     		checkCudaErrors(cudaFreeHost(r[i]));
