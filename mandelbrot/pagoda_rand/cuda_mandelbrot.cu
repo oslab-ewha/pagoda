@@ -88,7 +88,8 @@ int main(){
   	g =  (int** )malloc(task * sizeof(int *));
   	b =  (int**)malloc(task * sizeof(int *));
   	c_max = (int*)malloc(task * sizeof(int));
-  	task_indx = (float*)malloc(task * sizeof(float));
+  	//task_indx = (float*)malloc(task * sizeof(float));
+	checkCudaErrors(cudaHostAlloc(&task_indx, task *sizeof(float), NULL));
   	checkCudaErrors(cudaMalloc(&task_indx_dev, task *sizeof(float)));
 
   	f = fopen("rand.txt", "r");
@@ -161,7 +162,8 @@ int main(){
   	free(b);
   	free(count);
   	free(count_dev);
-  	free(task_indx);
+  	//free(task_indx);
+	checkCudaErrors(cudaFreeHost(task_indx));
   	checkCudaErrors(cudaFree(task_indx_dev));
 
   	return 0;
