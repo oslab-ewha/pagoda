@@ -10,13 +10,9 @@
 ##############################################################################
 
 
-CC = nvcc
-CCFLAGS = -w -O3 -arch=sm_52 -maxrregcount 32
-CCDEBUGFLAGS = -g
-INC = -I./include -I/usr/local/cuda-7.5/include -I/usr/local/cuda-7.5/samples/common/inc
-
+include ../../common/make.config
 default:
-	$(CC) $(CCFLAGS) dct.cu -o dct $(INC) $(CCOPTIONS)
+	$(NVCC) $(CFLAGS) -I$(INC) -arch=$(ARCH) -maxrregcount $(REG) dct.cu -o dct
 run:
 	./dct
 clean:
