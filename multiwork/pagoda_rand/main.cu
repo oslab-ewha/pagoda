@@ -69,7 +69,7 @@ int main(){
   int num_thread[task];
   int num_size[task];
   FILE *fp;
-
+  cudaSetDevice(0);
   fp = fopen("rand.txt", "r");
   for(i = 0; i < task; i++)
     fscanf(fp, "%1d", &num_thread[i]);

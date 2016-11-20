@@ -48,7 +48,7 @@ int main(){
 	int StrideF[task];
   	FILE *fp;
   	cudaStream_t mult_stream[task];
-
+	cudaSetDevice(0);
   	setenv("CUDA_DEVICE_MAX_CONNECTIONS", "32", 1);
 
   	for(i = 0; i < task; i++){

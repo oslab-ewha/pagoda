@@ -52,6 +52,7 @@ int main(){
 
   
   	FILE *f;
+	cudaSetDevice(0);
   	setenv("CUDA_DEVICE_MAX_CONNECTIONS", "32", 1);
 
   	cudaStream_t *filter_stream;

@@ -44,7 +44,7 @@ int main(){
   	int num_thread[N_ch];
   	int num_size[N_ch];
   	FILE *f;
-  
+ 	cudaSetDevice(0); 
   	setenv("CUDA_DEVICE_MAX_CONNECTIONS", "32", 1);
 
   

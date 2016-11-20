@@ -80,7 +80,7 @@ int main(){
   	int num_thread[task];
   	int num_size[task];
   	FILE *f;
-
+	cudaSetDevice(0);
   	double start_timer, end_timer;
   	count =  (int**)malloc(task * sizeof(int *));
   	count_dev = (int**)malloc(task * sizeof(int *));

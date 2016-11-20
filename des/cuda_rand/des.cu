@@ -315,7 +315,7 @@ int main (int argc, char **argv)
   	uint32 *des_dsk_dev;
 
   	cudaStream_t des_stream[numpackets];
-
+	cudaSetDevice(0);
   	setenv("CUDA_DEVICE_MAX_CONNECTIONS", "32", 1);
 
   	for(i = 0; i < numpackets; i++){

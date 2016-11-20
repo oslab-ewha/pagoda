@@ -47,7 +47,7 @@ int main(){
   	int pos_task[BT_NUM][TK_NUM];
   	int *pos_task_dev[BT_NUM];
   	int Stride[BT_NUM][TK_NUM], *d_Stride[BT_NUM];
-
+	cudaSetDevice(0);
   	FILE *fp;
 
   	fp = fopen("rand.txt", "r");

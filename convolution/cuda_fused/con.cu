@@ -36,7 +36,7 @@ int main(){
 
   	int i, j;
   	double start_timer, end_timer;
-
+	cudaSetDevice(0);
   	//printf("Initializing data...\n");
 
   	h_Kernel    = (float **)malloc(BT_NUM * sizeof(float*));

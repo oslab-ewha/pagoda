@@ -60,7 +60,7 @@ int main(){
   FILE *fp;
 
   cudaStream_t work_stream[TK_NUM];
-
+  cudaSetDevice(0);
   setenv("CUDA_DEVICE_MAX_CONNECTIONS", "32", 1);
 
   for(i = 0; i < TK_NUM; i++){

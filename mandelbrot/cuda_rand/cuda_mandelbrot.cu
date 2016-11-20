@@ -135,7 +135,7 @@ int main(){
   	int num_thread[task];
   	int num_size[task];
   	FILE *f;
-
+	cudaSetDevice(0);
   	cudaStream_t mand_stream[task];
 
   	double start_timer, end_timer;

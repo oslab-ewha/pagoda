@@ -234,7 +234,7 @@ int main (int argc, char **argv)
   	uint32 *des_dsk_dev;
 
   	double start_timer, end_timer;
-
+	cudaSetDevice(0);
   	runtime_init();
  
   	packet_in = (unsigned char**)malloc(numpackets*sizeof(unsigned char*)); 

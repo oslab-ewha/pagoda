@@ -141,7 +141,7 @@ int main(){
   	int *pos_task_dev[BT_NUM];
   	int *num_thread_dev;
   	float *task_indx_dev;
-
+	cudaSetDevice(0);
   	FILE *f;
 
   	double start_timer, end_timer;

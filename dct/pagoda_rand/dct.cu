@@ -26,7 +26,7 @@ int main(){
         int num_size[task];
         int StrideF[task];
         FILE *fp;
-
+	cudaSetDevice(0);
 	fp = fopen("rand.txt", "r");
         for(i = 0; i < task; i++)
                 fscanf(fp, "%1d", &num_thread[i]);

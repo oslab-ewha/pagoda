@@ -323,7 +323,7 @@ int main (int argc, char **argv)
   	int pos_task[BT_NUM][TK_NUM];
   	int *pos_task_dev[BT_NUM];
   	FILE *fp;
-
+	cudaSetDevice(0);
 
   	uint32 *des_esk;
   	uint32 *des_dsk;

@@ -56,7 +56,7 @@ int main(){
   	int **pos_task_dev;
 
 	float **h_Vect_F;
-  
+ 	cudaSetDevice(0); 
   	FILE *f;
 
   	int i, j;

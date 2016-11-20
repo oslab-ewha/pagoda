@@ -42,6 +42,7 @@ int main(){
   	FILE *f;
   	double start_timer, end_timer;
 
+	cudaSetDevice(0);
   	setenv("CUDA_DEVICE_MAX_CONNECTIONS", "32", 1);
 
 

@@ -58,7 +58,7 @@ int main(){
   int *pos_task_dev[BT_NUM];
 
   FILE *fp;
-
+  cudaSetDevice(0);
   double start_timer, end_timer;
 
   fp = fopen("rand.txt", "r");
