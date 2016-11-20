@@ -247,7 +247,7 @@ cd pthread
 # Running convolution pthread
 sh run
 make clean
-\
+
 cd ../../
 cd dct/pagoda_rand
 # Running dct Pagoda
