@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-#include "para.h"
-#include "para.cuh"
+#include "../../common/para.h"
+#include "../../common/para.cuh"
 #include "kernel.cuh"
 #include "runtime.cuh"
 

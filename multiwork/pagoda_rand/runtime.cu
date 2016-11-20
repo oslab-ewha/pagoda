@@ -1,8 +1,8 @@
 #include <cuda_runtime.h>
 #include <helper_cuda.h>
 #include <stdint.h>
-#include "para.h"
-#include "para.cuh"
+#include "../../common/para.h"
+#include "../../common/para.cuh"
 #include "omp.h"
 #include <stdarg.h>
 //#include "hash/dict.h"
