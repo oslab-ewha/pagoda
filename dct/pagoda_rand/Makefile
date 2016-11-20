@@ -1,10 +1,5 @@
+include ../../common/make.config
 TARGET=dct
-GPATH=/usr/local/cuda-7.5/bin
-NVCC=$(GPATH)/nvcc
-INC=/usr/local/cuda-7.5/samples/common/inc
-CFLAGS=-O3 -w 
-ARCH=sm_52
-REG=32
 
 .PHONY: default all clean
 
