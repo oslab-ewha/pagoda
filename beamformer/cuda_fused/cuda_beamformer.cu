@@ -112,6 +112,7 @@ int main(){
   	}
   	checkCudaErrors(cudaMalloc(&d_num_thread, NUM_CHAN*sizeof(int)));
 
+	printf("Inputs are generating\n");
   	// init data
   	for(i = 0; i < BT_NUM; i++){
     		BeamFirSetup(h_coarse_weight[i], h_coarse_buffer[i], num_size[i]);
@@ -131,6 +132,7 @@ int main(){
 
   	checkCudaErrors(cudaDeviceSynchronize());
 
+	printf("GPU program is running\n");
   	// task running
   	start_timer = my_timer();
   	for(i = 0; i < BT_NUM; i++){

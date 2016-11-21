@@ -60,7 +60,6 @@ int main(){
 
   	for(i = 0; i < NUM_CHAN; i++){
     		num_size[i] = (num_thread[i]*16)*(num_thread[i]*16);
-    //printf("num_size:%d\n", num_size[i]);
   	}
 
 
@@ -95,6 +94,7 @@ int main(){
   	}
   
   	// init data
+	printf("Inputs are generted\n");
   	for(i = 0; i < NUM_CHAN; i++){
     		BeamFirSetup(h_coarse_weight[i], h_coarse_buffer[i], num_size[i]);
     		InputGenerate(h_inputs[i], num_size[i]);
@@ -109,6 +109,7 @@ int main(){
   	}
   	checkCudaErrors(cudaDeviceSynchronize());
 
+	printf("GPU program is running\n");
   	// task running
   	start_timer = my_timer();
   	for(i = 0; i < NUM_CHAN; i++){

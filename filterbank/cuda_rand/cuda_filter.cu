@@ -117,7 +117,7 @@ int main(){
 
   	}
 
-
+	printf("Filterbank inputs are generating\n");
   	/*init data*/
   	for(i = 0; i < N_ch; i++)
     		for(j = 0; j < num_size[i]; j++){
@@ -145,6 +145,7 @@ int main(){
   	}
   	checkCudaErrors(cudaDeviceSynchronize());
 
+	printf("Filterbank CUDA baseline is running\n");
   	// task launch
   	start_timer = my_timer();
   	for(i = 0; i < N_ch; i++){

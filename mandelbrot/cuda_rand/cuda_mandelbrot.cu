@@ -163,7 +163,6 @@ int main(){
   	for(i = 0; i < task; i++){
     		checkCudaErrors(cudaStreamCreate(&mand_stream[i]));
   	}
-
   	for(i = 0; i < task; i++){
     		checkCudaErrors(cudaHostAlloc(&count[i], num_size[i] * num_size[i] *sizeof(int), NULL));
     		checkCudaErrors(cudaMalloc(&count_dev[i], num_size[i] * num_size[i] *sizeof(int)));
@@ -172,6 +171,7 @@ int main(){
     		b[i] = ( int * ) malloc ( num_size[i] * num_size[i] * sizeof ( int ) );
   	}
 
+	printf("MB CUDA baseline is running\n");
   	start_timer = my_timer(); 
   	//Carry out the iteration for each pixel, determining COUNT.
   	for(i = 0 ; i < task ; i++){

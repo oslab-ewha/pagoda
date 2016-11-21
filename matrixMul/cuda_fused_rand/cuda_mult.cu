@@ -107,6 +107,7 @@ int main(){
 
   	checkCudaErrors(cudaMalloc(&num_thread_dev, task*sizeof(int)));
 
+	printf("MM CUDA static fusion inputs are generating\n");
   	// Init matrix
   	for(i = 0; i < BT_NUM; i++){
     		for(j = 0; j < num_size[i]; j++){
@@ -126,6 +127,7 @@ int main(){
   	checkCudaErrors(cudaMemcpy(num_thread_dev, num_thread, task*sizeof(int), cudaMemcpyHostToDevice));
   	checkCudaErrors(cudaDeviceSynchronize());
   
+	printf("MM CUDA static fusion is running\n");
   	start_timer = my_timer();
   	for(i = 0; i < BT_NUM; i++){
     		mult_gpu<<<TK_NUM, TD_NUM>>>(A_dev[i], B_dev[i], C_dev[i], pos_task_dev[i], num_thread_dev, i);

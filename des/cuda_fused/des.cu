@@ -386,7 +386,7 @@ int main (int argc, char **argv)
   	}
   	checkCudaErrors(cudaMalloc(&num_thread_dev, numpackets*sizeof(int)));
 
-
+	printf("DES CUDA static fusion inputs are generating\n");
   	//generate packet
   	for(i = 0; i < BT_NUM; i++){
       		for(j = 0; j < num_size[i]; j++){
@@ -410,6 +410,7 @@ int main (int argc, char **argv)
 
   	checkCudaErrors(cudaDeviceSynchronize());
 
+	printf("DES CUDA static fusion is running\n");
   	start_timer = my_timer();
   	// run des
   	for(i = 0; i < BT_NUM; i++){

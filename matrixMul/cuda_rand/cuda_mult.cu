@@ -82,7 +82,7 @@ int main(){
     		checkCudaErrors(cudaMalloc(&C_dev[i], num_size[i]*num_size[i]*sizeof(int)));
     		D[i] = (int*)malloc(sizeof(int)*num_size[i]*num_size[i]);
   	}
-
+	printf("MM CUDA baseline inputs are generating\n");
   	// Init matrix
   	for(i = 0; i < task; i++){
     		for(j = 0; j < num_size[i]*num_size[i]; j++){
@@ -100,6 +100,7 @@ int main(){
   	}
   	checkCudaErrors(cudaDeviceSynchronize());
 
+	printf("MM CUDA baseline inputs are running\n");
   	start_timer = my_timer();
   	for(i = 0; i < task; i++){
     		mult_gpu<<<1, num_thread[i]*32, 0, mult_stream[i]>>>(A_dev[i], B_dev[i], C_dev[i], num_size[i], num_thread[i]*32);

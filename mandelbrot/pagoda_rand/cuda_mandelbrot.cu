@@ -118,6 +118,7 @@ int main(){
   
   	checkCudaErrors(cudaMemcpyAsync(task_indx_dev, task_indx, task *sizeof(float), cudaMemcpyHostToDevice, runtime_stream));
   	checkCudaErrors(cudaStreamSynchronize(runtime_stream));
+	printf("MB Pagoda is running\n");
   	start_timer = my_timer(); 
   	//Carry out the iteration for each pixel, determining COUNT.
 

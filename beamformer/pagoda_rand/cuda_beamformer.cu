@@ -88,6 +88,7 @@ int main(){
   	}
  
   	// init data
+	printf("Inputs are generating\n");
   	for(i = 0; i < NUM_CHAN; i++){
     		BeamFirSetup(h_coarse_weight[i], h_coarse_buffer[i], num_size[i]);
     		InputGenerate(h_inputs[i], num_size[i]);
@@ -102,7 +103,8 @@ int main(){
     
   	}
   	checkCudaErrors(cudaStreamSynchronize(runtime_stream));
-  	// task running
+  	printf("GPU program is running\n");
+	// task running
   	start_timer = my_timer();
   	for(i = 0; i < NUM_CHAN; i++){
    	 taskLaunch(11, INT, num_thread[i]*32, INT, 1, INT, 0, INT, 0, INT, 0, 

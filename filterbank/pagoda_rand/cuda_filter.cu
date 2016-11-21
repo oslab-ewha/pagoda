@@ -99,6 +99,7 @@ int main(){
 		h_Vect_F[i] = (float*)malloc(num_size[i] * sizeof(float));
   	}
 
+	printf("Filterbank Pagoda inputs are generating\n");
   	/*init data*/
   	for(i = 0; i < N_ch; i++)
     		for(j = 0; j < num_size[i]; j++){
@@ -126,7 +127,7 @@ int main(){
     		checkCudaErrors(cudaMemcpyAsync(F_dev[i], F[i], N_col*sizeof(float), cudaMemcpyHostToDevice, runtime_stream));
   	}
   	checkCudaErrors(cudaStreamSynchronize(runtime_stream));
-  	
+  	printf("Filterbank Pagoda is running\n");
 	// task launch
   	start_timer = my_timer();
   	for(i = 0; i < N_ch; i++){

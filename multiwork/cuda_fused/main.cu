@@ -184,7 +184,7 @@ int main(){
   checkCudaErrors(cudaHostAlloc(&h_des_dsk, 96*sizeof(uint32), cudaHostAllocDefault));
   checkCudaErrors(cudaMalloc(&d_des_dsk, 96*sizeof(uint32)));
 
-
+  printf("MPE CUDA static fusion inputs are generating\n");
    /*Generate encryption key*/
   des_set_key(h_des_esk, h_des_dsk, DES3_keys[0], DES3_keys[1], DES3_keys[2]);
 
@@ -235,7 +235,7 @@ int main(){
   checkCudaErrors(cudaMemcpy(d_des_esk, h_des_esk, 96*sizeof(uint32), cudaMemcpyHostToDevice));
   checkCudaErrors(cudaMemcpy(d_des_dsk, h_des_dsk, 96*sizeof(uint32), cudaMemcpyHostToDevice));
   checkCudaErrors(cudaDeviceSynchronize());
-
+  printf("MPE CUDA static fusion is running\n");
   start_timer = my_timer();
   // cpu compute
 #if 1

@@ -369,6 +369,7 @@ int main (int argc, char **argv)
       		}
   	}
 
+	printf("DES CUDA baseline inputs are generating\n");
   	//generate packet
   	for(i = 0; i < numpackets; i++){
       		if(num_size[i] == 32){
@@ -405,6 +406,7 @@ int main (int argc, char **argv)
   	checkCudaErrors(cudaMemcpyAsync(des_dsk_dev, des_dsk, 96*sizeof(uint32), cudaMemcpyHostToDevice, des_stream[0]));
   	checkCudaErrors(cudaDeviceSynchronize());
 
+	printf("DES CUDA baseline program is running\n");
   	start_timer = my_timer();
   	// run des
   	for(i = 0; i < numpackets; i++){

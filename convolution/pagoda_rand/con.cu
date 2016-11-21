@@ -74,6 +74,7 @@ int main(){
   		h_OutputCPU[i] = (float*)malloc(num_size[i]*num_size[i] * sizeof(float));
 	}
 
+	printf("Inputs are generating\n");
 	for(i = 0; i < NUM_TASK;i++){
   		for (j = 0; j < KERNEL_LENGTH; j++){
     			h_Kernel[i][j] = (float)j/KERNEL_LENGTH;
@@ -97,6 +98,8 @@ int main(){
 
 	}
 	checkCudaErrors(cudaStreamSynchronize(runtime_stream));
+
+	printf("Convolution Pagoda program is running");
 	start_timer = my_timer();
 	for(i = 0; i < NUM_TASK; i++){
   		taskLaunch(10, INT, num_thread[i]*32, INT, 1, INT, 0, INT, 0, INT, 0, FLOAT, d_Buffer[i], FLOAT, d_Input[i], FLOAT, d_Kernel[i], INT, num_size[i], INT, num_thread[i]*32);

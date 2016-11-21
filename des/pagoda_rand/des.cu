@@ -278,6 +278,7 @@ int main (int argc, char **argv)
       		packet_open[i] =  (unsigned char *) malloc (packet_length[i]);
 
   	}
+	printf("DES Pagoda inputs are generating\n");
 
   	//generate packet
   	for(i = 0; i < numpackets; i++){
@@ -310,7 +311,7 @@ int main (int argc, char **argv)
   		checkCudaErrors(cudaMemcpyAsync(des_dsk_dev, des_dsk, 96*sizeof(uint32), cudaMemcpyHostToDevice, runtime_stream));
   		checkCudaErrors(cudaStreamSynchronize(runtime_stream));
 
-
+	printf("DES Pagoda program is running\n");
   	start_timer = my_timer();
 
   	// run des

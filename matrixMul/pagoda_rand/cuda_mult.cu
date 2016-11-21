@@ -63,6 +63,7 @@ int main(){
     		D[i] = (int*)malloc(sizeof(int)*num_size[i]*num_size[i]);
   	}
 
+	printf("MM Pagoda inputs are generating\n");
   	// Init matrix
   	for(i = 0; i < task; i++){
     		for(j = 0; j < num_size[i]*num_size[i]; j++){
@@ -82,6 +83,7 @@ int main(){
   	}
   	checkCudaErrors(cudaStreamSynchronize(runtime_stream));
 
+	printf("MM Pagoda is running\n");
   	start_timer = my_timer();
 
   	for(i = 0; i < task; i++){

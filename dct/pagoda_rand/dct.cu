@@ -51,7 +51,7 @@ int main(){
 		checkCudaErrors(cudaHostAlloc(&C[i], num_size[i]*num_size[i]*sizeof(float), cudaHostAllocDefault));
     		D[i] = (float*)malloc(sizeof(float)*num_size[i]*num_size[i]);
   	}
-
+	printf("DCT Pagoda inputs are generating\n");
   	// Init matrix
   	for(i = 0; i < task; i++){
     		for(j = 0; j < num_size[i]*num_size[i]; j++){
@@ -69,6 +69,7 @@ int main(){
 	}
 	checkCudaErrors(cudaStreamSynchronize(runtime_stream));
 
+	printf("DCT pagoda is running\n");
 	start_timer = my_timer();
 
 	for(i = 0; i < task; i++){
