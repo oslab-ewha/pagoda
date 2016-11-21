@@ -99,7 +99,7 @@ int main(){
 	}
 	checkCudaErrors(cudaStreamSynchronize(runtime_stream));
 
-	printf("Convolution Pagoda program is running");
+	printf("Convolution Pagoda program is running\n");
 	start_timer = my_timer();
 	for(i = 0; i < NUM_TASK; i++){
   		taskLaunch(10, INT, num_thread[i]*32, INT, 1, INT, 0, INT, 0, INT, 0, FLOAT, d_Buffer[i], FLOAT, d_Input[i], FLOAT, d_Kernel[i], INT, num_size[i], INT, num_thread[i]*32);
