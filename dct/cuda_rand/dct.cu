@@ -79,7 +79,7 @@ int main(){
     		D[i] = (float*)malloc(sizeof(float)*num_size[i]*num_size[i]);
   	}
 
-	printf("DCT CUDA baseline inputs are generating");
+	printf("DCT CUDA baseline inputs are generating\n");
   	// Init matrix
   	for(i = 0; i < task; i++){
     		for(j = 0; j < num_size[i]*num_size[i]; j++){
