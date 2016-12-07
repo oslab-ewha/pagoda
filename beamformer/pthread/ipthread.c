@@ -308,11 +308,12 @@ int main(int argc, char *argv[])
     		free(predec_OpenMP[i]);
 
   	}
+#if 0
   	for(i = 0; i < NUM_BEAMS; i++){
     		free(beam_weights[i]);
     		free(detector_out[i]);
   	}
-
+#endif
   	//free(predec);
   	free(beam_input);
   	free(beam_output);

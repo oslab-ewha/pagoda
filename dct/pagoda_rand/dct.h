@@ -3,7 +3,7 @@
 
 #include "../../common/para.h"
 #define BLOCK_SIZE 8
-#define task (TK_NUM * BT_NUM)
+#define task (TK_NUM*BT_NUM)
 
 #define __MUL24_FASTER_THAN_ASTERIX
 
