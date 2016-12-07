@@ -206,7 +206,7 @@ int main(){
   	}
 
   	end_timer = my_timer();
-  	printf("Filterbank pthread Elapsed time: %f Sec.\n", end_timer - start_timer);
+  	printf("Filterbank pthread Elapsed Time: %f Sec.\n", end_timer - start_timer);
 
 	/*init data*/
         for(i = 0; i < N_ch; i++)

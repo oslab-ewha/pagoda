@@ -462,7 +462,7 @@ int main (int argc, char **argv)
 
   	}
   	end_timer = my_timer();
-  	printf("DES pthread Execution time: %lf Sec.\n", end_timer - start_timer);
+  	printf("DES pthread Execution Time: %lf Sec.\n", end_timer - start_timer);
 
 	printf("CPU program running\n");
   	start_timer = my_timer();

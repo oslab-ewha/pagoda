@@ -155,7 +155,7 @@ int main(){
   	checkCudaErrors(cudaDeviceSynchronize());
 
   	end_timer = my_timer();
-  	printf("Filterbank CUDA baseline Elapsed time: %f Sec.\n", end_timer - start_timer);
+  	printf("Filterbank CUDA baseline Elapsed Time: %f Sec.\n", end_timer - start_timer);
 
   	// Data transfer back to host
   	for(i = 0; i < N_ch; i++){

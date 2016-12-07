@@ -177,7 +177,7 @@ int main(){
   waitAll(NUM_CHANNELS);
 #endif
   end_timer = my_timer();
-  printf("GPU elapsed time:%lf sec.\n", end_timer - start_timer);
+  printf("GPU elapsed Time: %lf sec.\n", end_timer - start_timer);
 
   start_timer = my_timer();
   for (i = 0; i < NUM_CHANNELS; i++) {

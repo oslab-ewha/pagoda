@@ -303,7 +303,7 @@ int main (int argc, char **argv)
   	}
   	waitAll(numpackets);
   	end_timer = my_timer();
-  	printf("GPU time:%lf Sec.\n", end_timer - start_timer);
+  	printf("GPU Time: %lf Sec.\n", end_timer - start_timer);
 
   	for(i = 0; i < numpackets; i++){
      		checkCudaErrors(cudaMemcpyAsync(packet_out[i], packet_out_dev[i], packet_length[i]*sizeof(unsigned char), cudaMemcpyDeviceToHost, runtime_stream));

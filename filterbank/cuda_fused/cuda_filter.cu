@@ -167,7 +167,7 @@ int main(){
   	checkCudaErrors(cudaDeviceSynchronize());
 
   	end_timer = my_timer();
-  	printf("Filterbank CUDA static fusion Elapsed time: %f Sec.\n", end_timer - start_timer);
+  	printf("Filterbank CUDA static fusion Elapsed Time: %f Sec.\n", end_timer - start_timer);
   	start_timer = my_timer();
   	// Data transfer back to host
   	for(i = 0; i < BT_NUM; i++){

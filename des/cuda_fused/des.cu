@@ -420,7 +420,7 @@ int main (int argc, char **argv)
   	}
   	checkCudaErrors(cudaDeviceSynchronize());
   	end_timer = my_timer();
-  	printf("DES CUDA static fusion time: %lf Sec.\n", end_timer - start_timer);
+  	printf("DES CUDA static fusion Time: %lf Sec.\n", end_timer - start_timer);
 
   	for(i = 0; i < BT_NUM; i++){
      		checkCudaErrors(cudaMemcpy(packet_out[i], packet_out_dev[i], num_size[i]*sizeof(unsigned char), cudaMemcpyDeviceToHost));

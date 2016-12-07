@@ -155,7 +155,7 @@ int main(int argc, char *argv[]){
   	waitAll(N_ch);
 
   	end_timer = my_timer();
-  	printf("The GPU Elapsed time:%f Sec.\n", end_timer - start_timer);
+  	printf("The GPU Elapsed Time: %f Sec.\n", end_timer - start_timer);
 
   	start_timer = my_timer();
 
