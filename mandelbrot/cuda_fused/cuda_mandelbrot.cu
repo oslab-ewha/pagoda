@@ -141,7 +141,7 @@ int main(){
   	int *pos_task_dev[BT_NUM];
   	int *num_thread_dev;
   	float *task_indx_dev;
-
+	cudaSetDevice(0);
   	FILE *f;
 
   	double start_timer, end_timer;
@@ -196,7 +196,7 @@ int main(){
     		checkCudaErrors(cudaMemcpy(pos_task_dev[i], pos_task[i], TK_NUM*sizeof(int), cudaMemcpyHostToDevice));
   	}	
   	checkCudaErrors(cudaDeviceSynchronize());
-
+	printf("MB CUDA static fusion is running\n");
   	start_timer = my_timer(); 
   	//Carry out the iteration for each pixel, determining COUNT.
   	for(i = 0 ; i < BT_NUM; i++){

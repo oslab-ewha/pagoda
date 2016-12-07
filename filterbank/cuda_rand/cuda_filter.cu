@@ -52,6 +52,7 @@ int main(){
 
   
   	FILE *f;
+	cudaSetDevice(0);
   	setenv("CUDA_DEVICE_MAX_CONNECTIONS", "32", 1);
 
   	cudaStream_t *filter_stream;
@@ -116,7 +117,7 @@ int main(){
 
   	}
 
-
+	printf("Filterbank inputs are generating\n");
   	/*init data*/
   	for(i = 0; i < N_ch; i++)
     		for(j = 0; j < num_size[i]; j++){
@@ -144,6 +145,7 @@ int main(){
   	}
   	checkCudaErrors(cudaDeviceSynchronize());
 
+	printf("Filterbank CUDA baseline is running\n");
   	// task launch
   	start_timer = my_timer();
   	for(i = 0; i < N_ch; i++){

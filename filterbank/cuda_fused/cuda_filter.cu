@@ -56,7 +56,7 @@ int main(){
   	int **pos_task_dev;
 
 	float **h_Vect_F;
-  
+ 	cudaSetDevice(0); 
   	FILE *f;
 
   	int i, j;
@@ -126,7 +126,8 @@ int main(){
 
   	}
   	checkCudaErrors(cudaMalloc(&num_thread_dev, N_ch*sizeof(int)));
-
+	
+	printf("Filterbank CUDA static fusion inputs are generating\n");
   	/*init data*/
   	for(i = 0; i < BT_NUM; i++)
     		for(j = 0; j < num_size[i]; j++){
@@ -156,6 +157,7 @@ int main(){
   	checkCudaErrors(cudaMemcpy(num_thread_dev, num_thread, N_ch*sizeof(int), cudaMemcpyHostToDevice));
   	checkCudaErrors(cudaDeviceSynchronize());
 
+	printf("Filterbank CUDA static fusion is running\n");
   	// task launch
   	start_timer = my_timer();
   	for(i = 0; i < BT_NUM; i++){

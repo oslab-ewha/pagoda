@@ -48,7 +48,7 @@ int main(){
 	int StrideF[task];
   	FILE *fp;
   	cudaStream_t mult_stream[task];
-
+	cudaSetDevice(0);
   	setenv("CUDA_DEVICE_MAX_CONNECTIONS", "32", 1);
 
   	for(i = 0; i < task; i++){
@@ -79,6 +79,7 @@ int main(){
     		D[i] = (float*)malloc(sizeof(float)*num_size[i]*num_size[i]);
   	}
 
+	printf("DCT CUDA baseline inputs are generating\n");
   	// Init matrix
   	for(i = 0; i < task; i++){
     		for(j = 0; j < num_size[i]*num_size[i]; j++){
@@ -93,7 +94,7 @@ int main(){
     		checkCudaErrors(cudaMemcpyAsync(A_dev[i], A[i], num_size[i]*num_size[i]*sizeof(float), cudaMemcpyHostToDevice, mult_stream[i]));
   	}
   	checkCudaErrors(cudaDeviceSynchronize());
-
+	printf("DCT CUDA baseline is running\n");
   	start_timer = my_timer();
   	for(i = 0; i < task; i++){
     		d_DCT<<<1, num_thread[i]*32, 0, mult_stream[i]>>>(A_dev[i], C_dev[i], StrideF[i], num_size[i], num_thread[i]*32);

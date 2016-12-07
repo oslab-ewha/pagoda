@@ -12,7 +12,7 @@
 
 CC = gcc
 CCFLAGS = -O3 -w
-CCOPTIONS = -lm -fopenmp -pthread
+CCOPTIONS = -lm -pthread
 #INC = -I./include
 
 default:

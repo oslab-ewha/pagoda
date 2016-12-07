@@ -36,7 +36,7 @@ int main(){
 
   	int i, j;
   	double start_timer, end_timer;
-
+	cudaSetDevice(0);
   	//printf("Initializing data...\n");
 
   	h_Kernel    = (float **)malloc(BT_NUM * sizeof(float*));
@@ -92,6 +92,8 @@ int main(){
   	}
   	checkCudaErrors(cudaMalloc(&num_thread_dev, NUM_TASK*sizeof(int)));
 
+	printf("Inputs are generating\n");
+
   	for(i = 0; i < BT_NUM;i++){
     		for (j = 0; j < KERNEL_LENGTH; j++){
       			h_Kernel[i][j] = (float)j/KERNEL_LENGTH;
@@ -115,7 +117,7 @@ int main(){
 
   	checkCudaErrors(cudaDeviceSynchronize());
 
-  	//printf("...running\n");
+  	printf("Convolution CUDA static fusion program is running\n");
 
   	start_timer = my_timer();
 

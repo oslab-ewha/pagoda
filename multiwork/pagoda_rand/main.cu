@@ -69,7 +69,7 @@ int main(){
   int num_thread[task];
   int num_size[task];
   FILE *fp;
-
+  cudaSetDevice(0);
   fp = fopen("rand.txt", "r");
   for(i = 0; i < task; i++)
     fscanf(fp, "%1d", &num_thread[i]);
@@ -140,7 +140,7 @@ int main(){
   checkCudaErrors(cudaHostAlloc(&h_des_dsk, 96*sizeof(uint32), cudaHostAllocDefault));
   checkCudaErrors(cudaMalloc(&d_des_dsk, 96*sizeof(uint32)));
 
-
+  printf("MPE Pagoda inputs are generating\n");
    /*Generate encryption key*/
   des_set_key(h_des_esk, h_des_dsk, DES3_keys[0], DES3_keys[1], DES3_keys[2]);
   
@@ -190,7 +190,7 @@ int main(){
   checkCudaErrors(cudaMemcpyAsync(d_des_esk, h_des_esk, 96*sizeof(uint32), cudaMemcpyHostToDevice, runtime_stream));
   checkCudaErrors(cudaMemcpyAsync(d_des_dsk, h_des_dsk, 96*sizeof(uint32), cudaMemcpyHostToDevice, runtime_stream));
   checkCudaErrors(cudaStreamSynchronize(runtime_stream));
-  
+  printf("MPE Pagoda is running\n"); 
   // compute
   int mult_c, mand_c, filter_c, des_c;
   mult_c = 0, mand_c = 0, filter_c = 0, des_c = 0;

@@ -35,6 +35,7 @@ int main(){
   	int i, j;
   	double start_timer, end_timer;
 
+	cudaSetDevice(0);
   	setenv("CUDA_DEVICE_MAX_CONNECTIONS", "32", 1);
 
   	//printf("Initializing data...\n");
@@ -80,6 +81,7 @@ int main(){
    	 	h_Buffer[i] = (float*)malloc(num_size[i]*num_size[i]*sizeof(float));
   	}
 
+	printf("Inputs are generating\n");
   	for(i = 0; i < NUM_TASK;i++){
     		for (j = 0; j < KERNEL_LENGTH; j++){
       			h_Kernel[i][j] = (float)j/KERNEL_LENGTH;
@@ -101,7 +103,7 @@ int main(){
   	}
   	checkCudaErrors(cudaDeviceSynchronize());
 
-  	printf("...running\n");
+  	printf("Convolution CUDA baseline program is running\n");
   	start_timer = my_timer();
   	for(i = 0; i < NUM_TASK; i++){
     		convolutionRowsGPU<<<1, num_thread[i]*32, 0, con_stream[i]>>>(d_Buffer[i], d_Input[i], d_Kernel[i], KERNEL_RADIUS, num_size[i], num_thread[i]*32);

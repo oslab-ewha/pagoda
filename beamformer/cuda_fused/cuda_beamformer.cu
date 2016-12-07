@@ -50,6 +50,7 @@ int main(){
   	FILE *f;
   	double start_timer, end_timer;
 
+	cudaSetDevice(0);
   	setenv("CUDA_DEVICE_MAX_CONNECTIONS", "32", 1);
 
 
@@ -111,6 +112,7 @@ int main(){
   	}
   	checkCudaErrors(cudaMalloc(&d_num_thread, NUM_CHAN*sizeof(int)));
 
+	printf("Inputs are generating\n");
   	// init data
   	for(i = 0; i < BT_NUM; i++){
     		BeamFirSetup(h_coarse_weight[i], h_coarse_buffer[i], num_size[i]);
@@ -130,6 +132,7 @@ int main(){
 
   	checkCudaErrors(cudaDeviceSynchronize());
 
+	printf("GPU program is running\n");
   	// task running
   	start_timer = my_timer();
   	for(i = 0; i < BT_NUM; i++){

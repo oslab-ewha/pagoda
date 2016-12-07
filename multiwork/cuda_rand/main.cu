@@ -60,7 +60,7 @@ int main(){
   FILE *fp;
 
   cudaStream_t work_stream[TK_NUM];
-
+  cudaSetDevice(0);
   setenv("CUDA_DEVICE_MAX_CONNECTIONS", "32", 1);
 
   for(i = 0; i < TK_NUM; i++){
@@ -134,7 +134,7 @@ int main(){
   checkCudaErrors(cudaHostAlloc(&h_des_dsk, 96*sizeof(uint32), cudaHostAllocDefault));
   checkCudaErrors(cudaMalloc(&d_des_dsk, 96*sizeof(uint32)));
 
-
+  printf("MPE CUDA baseline inputs are generating\n");
    /*Generate encryption key*/
   des_set_key(h_des_esk, h_des_dsk, DES3_keys[0], DES3_keys[1], DES3_keys[2]);
   
@@ -180,6 +180,7 @@ int main(){
   checkCudaErrors(cudaMemcpyAsync(d_des_dsk, h_des_dsk, 96*sizeof(uint32), cudaMemcpyHostToDevice, work_stream[0]));
   checkCudaErrors(cudaDeviceSynchronize());
   
+  printf("MPE CUDA baseline is running\n");
   start_timer = my_timer();
   // compute
   int mult_c, mand_c, filter_c, des_c;

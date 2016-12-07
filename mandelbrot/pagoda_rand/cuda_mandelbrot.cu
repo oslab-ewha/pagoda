@@ -80,7 +80,7 @@ int main(){
   	int num_thread[task];
   	int num_size[task];
   	FILE *f;
-
+	cudaSetDevice(0);
   	double start_timer, end_timer;
   	count =  (int**)malloc(task * sizeof(int *));
   	count_dev = (int**)malloc(task * sizeof(int *));
@@ -118,6 +118,7 @@ int main(){
   
   	checkCudaErrors(cudaMemcpyAsync(task_indx_dev, task_indx, task *sizeof(float), cudaMemcpyHostToDevice, runtime_stream));
   	checkCudaErrors(cudaStreamSynchronize(runtime_stream));
+	printf("MB Pagoda is running\n");
   	start_timer = my_timer(); 
   	//Carry out the iteration for each pixel, determining COUNT.
 
