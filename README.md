@@ -9,7 +9,7 @@ This README would normally document whatever steps are necessary to get your app
 
 ### How do I get set up? ###
 
-* Install CUDA library >= 7.5
+* Install CUDA library >= 7.5 and python >=2.6
 * Configuration
 
   1.  To change the value of SM_NUM in common/para.h based on your GPU. 
