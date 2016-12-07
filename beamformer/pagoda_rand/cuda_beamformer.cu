@@ -8,7 +8,7 @@
 #include <helper_cuda.h>
 #include "runtime.cuh"
 #include "../../common/para.h"
-#define NUM_CHAN 10240
+#define NUM_CHAN 19200
 
 double my_timer()
 {

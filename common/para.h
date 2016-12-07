@@ -13,6 +13,6 @@
 #define streamNum 	1024 			// the number of cuda stream
 #define maxWarp		64			// the max number of warps in one SM
 #define TDK_NUM		256			// the number of thread in a block used in rand experiment
-#define TASK_NUM	19200
+#define TASK_NUM	30720
 #define TK_NUM		(maxWarp/(TDK_NUM/warpSize)*SM_NUM)	// the number of tasks in batch used in rand experiment
 #define BT_NUM		(TASK_NUM/TK_NUM)			// the number of batches used in rand experiment

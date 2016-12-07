@@ -13,7 +13,7 @@
 #include "packet.h"
 #include "../../common/para.h"
 #define HEADER_SIZE 36
-#define numpackets 10240
+#define numpackets 19200
 
 double my_timer()
 {
