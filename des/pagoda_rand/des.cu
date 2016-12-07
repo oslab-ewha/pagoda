@@ -13,7 +13,7 @@
 #include "packet.h"
 #include "../../common/para.h"
 #define HEADER_SIZE 36
-#define numpackets (TK_NUM * BT_NUM)
+#define numpackets 10240
 
 double my_timer()
 {
