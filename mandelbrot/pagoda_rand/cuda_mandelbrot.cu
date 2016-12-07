@@ -128,7 +128,7 @@ int main(){
   	}
   	waitAll(task);
   	end_timer = my_timer();
-  	printf("Mandelbrot pagoda Elapsed Time:%lf Sec.\n", end_timer - start_timer);
+  	printf("Mandelbrot pagoda Elapsed Time: %lf Sec.\n", end_timer - start_timer);
   
 	//transfer back to host
   	for(i = 0; i < task; i++){

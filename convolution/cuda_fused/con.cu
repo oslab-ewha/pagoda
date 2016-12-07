@@ -132,7 +132,7 @@ int main(){
   	checkCudaErrors(cudaDeviceSynchronize());
 
   	end_timer = my_timer();
-  	printf("Convolution CUDA static fusion elapsed time:%lf Sec.\n", end_timer - start_timer);
+  	printf("Convolution CUDA static fusion elapsed Time: %lf Sec.\n", end_timer - start_timer);
 
   	for(i = 0; i < BT_NUM; i++){
     		checkCudaErrors(cudaMemcpy(h_OutputGPU[i], d_Output[i], num_size[i]*sizeof(float), cudaMemcpyDeviceToHost));

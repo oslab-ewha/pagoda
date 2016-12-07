@@ -106,7 +106,7 @@ int main(){
 
   	}
   end_timer = my_timer();
-  printf("Mandelbrot pthread Elapsed Time:%lf Sec.\n", end_timer - start_timer);
+  printf("Mandelbrot pthread Elapsed Time: %lf Sec.\n", end_timer - start_timer);
 
 #if 0
   	start_timer = my_timer();

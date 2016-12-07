@@ -125,7 +125,7 @@ int main(){
   	waitAll(NUM_CHAN);
 
   	end_timer = my_timer();
-  	printf("Beamformer pagoda elapsed time:%lf sec.\n", end_timer - start_timer);
+  	printf("Beamformer pagoda elapsed time: %lf sec.\n", end_timer - start_timer);
 
   	// copy back
   	for (i = 0; i < NUM_CHAN; i++) {

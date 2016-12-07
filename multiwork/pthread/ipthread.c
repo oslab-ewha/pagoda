@@ -327,7 +327,7 @@ int main(){
 #endif
 
   end_timer = my_timer();
-  printf("Multiprogramming pthread elapsed time:%lf Sec.\n", end_timer - start_timer);
+  printf("Multiprogramming pthread elapsed Time: %lf Sec.\n", end_timer - start_timer);
 
 
   //verificiation

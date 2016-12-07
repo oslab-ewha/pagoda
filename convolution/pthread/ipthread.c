@@ -152,7 +152,7 @@ int main(){
 
   	}
   	end_timer = my_timer();
-  	printf("Convolution pthread elapsed time:%lf Sec.\n", end_timer - start_timer);
+  	printf("Convolution pthread elapsed Time: %lf Sec.\n", end_timer - start_timer);
 
   	printf("CPU program running\n");
   	start_timer = my_timer();

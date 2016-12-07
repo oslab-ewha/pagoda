@@ -261,7 +261,7 @@ int main(int argc, char *argv[])
   	}
 
   	end_timer = my_timer();
-  	printf("Beamformer pthread Elapsed Time:%lf Sec.\n", end_timer - start_timer);
+  	printf("Beamformer pthread Elapsed Time: %lf Sec.\n", end_timer - start_timer);
 
 #if 0
   	start_timer = my_timer();

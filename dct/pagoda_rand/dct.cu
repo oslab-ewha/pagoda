@@ -78,7 +78,7 @@ int main(){
 
 	waitAll(task);
 	end_timer = my_timer();
-  	printf("DCT pagoda Elapsed Time:%lf Sec.\n", end_timer - start_timer);
+  	printf("DCT pagoda Elapsed Time: %lf Sec.\n", end_timer - start_timer);
 
 	for(i = 0; i < task; i++){
 		checkCudaErrors(cudaMemcpyAsync(C[i], d_C[i], num_size[i]*num_size[i]*sizeof(float), cudaMemcpyDeviceToHost, runtime_stream));

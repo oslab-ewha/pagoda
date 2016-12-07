@@ -128,7 +128,7 @@ int main(){
   	}
   	checkCudaErrors(cudaDeviceSynchronize());
   	end_timer = my_timer();
-  	printf("Beamformer CUDA baseline elapsed time:%lf sec.\n", end_timer - start_timer);
+  	printf("Beamformer CUDA baseline elapsed time: %lf sec.\n", end_timer - start_timer);
 
   	// copy back
   	start_timer = my_timer();

@@ -93,7 +93,7 @@ int main(){
   	waitAll(task);
 
   	end_timer = my_timer();
-  	printf("The Pagoda matrixMul Elapsed Time:%lf Sec.\n", end_timer - start_timer);
+  	printf("The Pagoda matrixMul Elapsed Time: %lf Sec.\n", end_timer - start_timer);
 
   	//transfer data back to host
   	for(i = 0; i < task; i++){

@@ -205,7 +205,7 @@ int main(){
   	checkCudaErrors(cudaDeviceSynchronize());
 
   	end_timer = my_timer();
-  	printf("Mandelbrot CUDA static fusion Elapsed Time:%lf Sec.\n", end_timer - start_timer);
+  	printf("Mandelbrot CUDA static fusion Elapsed Time: %lf Sec.\n", end_timer - start_timer);
 
   	//transfer back to host
   	for(i = 0; i < BT_NUM; i++){

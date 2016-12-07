@@ -250,7 +250,7 @@ int main(){
   checkCudaErrors(cudaDeviceSynchronize());
 #endif
   end_timer = my_timer();
-  printf("Multiprogramming CUDA static fusion elapsed time:%lf Sec.\n", end_timer - start_timer);
+  printf("Multiprogramming CUDA static fusion elapsed Time: %lf Sec.\n", end_timer - start_timer);
 
   // memory copy back
   for(i = 0; i < BT_NUM; i++){

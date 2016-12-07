@@ -421,7 +421,7 @@ int main (int argc, char **argv)
   	}
   	checkCudaErrors(cudaDeviceSynchronize());
   	end_timer = my_timer();
-  	printf("DES CUDA baseline execution time:%lf Sec.\n", end_timer - start_timer);
+  	printf("DES CUDA baseline execution time: %lf Sec.\n", end_timer - start_timer);
 
   	for(i = 0; i < numpackets; i++){
      		if(num_size[i] == 32){

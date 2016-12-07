@@ -237,7 +237,7 @@ int main(){
   waitAll(task);
 #endif
   end_timer = my_timer();
-  printf("Multiprogramming pagoda elapsed time:%lf Sec.\n", end_timer - start_timer);
+  printf("Multiprogramming pagoda elapsed Time: %lf Sec.\n", end_timer - start_timer);
  
   // memory copy back
   for(i = 0; i < TK_NUM; i++){

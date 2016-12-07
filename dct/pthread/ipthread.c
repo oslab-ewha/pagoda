@@ -129,7 +129,7 @@ int main(){
   	}
 
   	end_timer = my_timer();
-  	printf("The DCT pthread Elapsed Time:%lf Sec.\n", end_timer - start_timer);
+  	printf("The DCT pthread Elapsed Time: %lf Sec.\n", end_timer - start_timer);
   
 	printf("CPU program running\n");
   	start_timer = my_timer();
