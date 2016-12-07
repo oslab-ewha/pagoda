@@ -137,7 +137,7 @@ int main(){
   	}
   	waitAll(N_ch);
   	end_timer = my_timer();
-  	printf("Filterbank pagoda Elapsed time: %f Sec.\n", end_timer - start_timer);
+  	printf("Filterbank pagoda Elapsed Time: %f Sec.\n", end_timer - start_timer);
 
   	// Data transfer back to host
   	for(i = 0; i < N_ch; i++){

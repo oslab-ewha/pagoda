@@ -323,7 +323,7 @@ int main (int argc, char **argv)
   	}
   	waitAll(numpackets);
   	end_timer = my_timer();
-  	printf("DES pagoda execution time: %lf Sec.\n", end_timer - start_timer);
+  	printf("DES pagoda execution Time: %lf Sec.\n", end_timer - start_timer);
 	
   	for(i = 0; i < numpackets; i++){
      		checkCudaErrors(cudaMemcpyAsync(packet_out[i], packet_out_dev[i], packet_length[i]*sizeof(unsigned char), 
