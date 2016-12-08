@@ -126,13 +126,13 @@ int main(){
 
   	end_timer = my_timer();
   	printf("Beamformer pagoda elapsed Time: %lf sec.\n", end_timer - start_timer);
-
+#if 0
   	// copy back
   	for (i = 0; i < NUM_CHAN; i++) {
     		checkCudaErrors(cudaMemcpyAsync(h_postdec[i], d_postdec[i], 2*num_size[i]*sizeof(float), cudaMemcpyDeviceToHost, runtime_stream));
   	}
   	checkCudaErrors(cudaStreamSynchronize(runtime_stream));
-  
+#endif  
 	runtime_destroy();
   	runtime_free();
 #if 0
