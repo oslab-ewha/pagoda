@@ -203,194 +203,197 @@ make
 cd ../../
 cd mandelbrot/pagoda_rand
 # Running mandelbrot Pagoda
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_rand
 # Running mandelbrot CUDA baseline
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_fused
 # Running mandelbrot CUDA static fusion
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd pthread
 # Running mandelbrot pthread
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ../../
 cd convolution/pagoda_rand
 # Running convolution Pagoda
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_rand
 # Running convolution CUDA baseline
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_fused
 # Running convolution CUDA static fusion
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd pthread
 # Running convolution pthread
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ../../
 cd dct/pagoda_rand
 # Running dct Pagoda
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_rand
 # Running dct CUDA baseline
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_fused
 # Running dct CUDA static fusion
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd pthread
 # Running dct pthread
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ../../
 cd filterbank/pagoda_rand
 #Running filterbank Pagoda
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_rand
 # Running filterbank CUDA baseline
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_fused
 # Running filterbank CUDA static fusion
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd pthread
 # Running filterbank pthread
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ../../
 cd beamformer/pagoda_rand
 # Running beamformer Pagoda
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_rand
 # Running beamformer CUDA baseline
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_fused
 # Running beamformer CUDA static fusion
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd pthread
 # Running beamformer pthread
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ../../
 cd matrixMul/pagoda_rand
 # Running matrixMul Pagoda
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_rand
 # Running matrixMul CUDA baseline
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_fused_rand
 # Running matrixMul CUDA static fusion
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd pthread
 # Running matrixMul pthread
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ../../
 cd des/pagoda_rand
 # Running des Pagoda
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_rand
 # Running des CUDA baseline
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_fused
 # Running des CUDA static fusion
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd pthread
 # Running des pthread
-sh run
+sh run >> ../../test.txt
 make clean
 
 
 cd ../../
 cd multiwork/pagoda_rand
 # Running multiprogramming Pagoda
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_rand
 # Running multiprogramming CUDA baseline
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd cuda_fused
 # Running multiprogramming CUDA static fusion
-sh run
+sh run >> ../../test.txt
 make clean
 
 cd ..
 cd pthread
 # Running multiprogramming pthread
-sh run
+sh run >> ../../test.txt
 make clean
+
+cd ../../
+python csv_generate.py
 
 echo "Completed"
