@@ -396,4 +396,5 @@ make clean
 cd ../../
 python csv_generate.py
 
+rm test.txt
 echo "Completed"
