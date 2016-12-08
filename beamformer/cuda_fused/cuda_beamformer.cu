@@ -8,7 +8,9 @@
 #include <helper_cuda.h>
 #include "../../common/para.h"
 
-#define NUM_CHAN (TK_NUM * BT_NUM)
+#define TKK_NUM 19200
+#define BTT_NUM (TKK_NUM/TK_NUM)
+#define NUM_CHAN (TK_NUM * BTT_NUM)
 
 double my_timer()
 {
@@ -39,14 +41,14 @@ int main(){
   	float **h_inputs, **h_predec, **h_postdec;
   	float **d_inputs, **d_predec, **d_postdec;
   	float **hh_postdec;
-  	int *d_len[BT_NUM];
+  	int *d_len[BTT_NUM];
   	int *d_num_thread;
 
   	int num_thread[NUM_CHAN];
-  	int num_size[BT_NUM];
-  	int pos_task[BT_NUM][TK_NUM];
-  	int *pos_task_dev[BT_NUM];
-  	int len[BT_NUM][TK_NUM];
+  	int num_size[BTT_NUM];
+  	int pos_task[BTT_NUM][TK_NUM];
+  	int *pos_task_dev[BTT_NUM];
+  	int len[BTT_NUM][TK_NUM];
   	FILE *f;
   	double start_timer, end_timer;
 
@@ -60,12 +62,12 @@ int main(){
 
   	fclose(f);
 
-  	for(i = 0; i < BT_NUM; i++){
+  	for(i = 0; i < BTT_NUM; i++){
     		num_size[i] = 0;
     //printf("num_size:%d\n", num_size[i]);
   	}
 
-  	for(i = 0; i < BT_NUM; i++){
+  	for(i = 0; i < BTT_NUM; i++){
     		for(j = 0; j < TK_NUM; j++){
         		num_size[i] += (num_thread[i*TK_NUM+j] * 16)*
                         	(num_thread[i*TK_NUM+j] * 16);
@@ -81,20 +83,20 @@ int main(){
   	for(i = 0; i < NUM_CHAN; i++)
     		num_thread[i] *= 32;
 
-  	d_coarse_weight = (float**)malloc(BT_NUM * sizeof(float *));
-  	d_coarse_buffer = (float**)malloc(BT_NUM * sizeof(float *));
-  	h_coarse_weight = (float**)malloc(BT_NUM * sizeof(float *));
-  	h_coarse_buffer = (float**)malloc(BT_NUM * sizeof(float *));
+  	d_coarse_weight = (float**)malloc(BTT_NUM * sizeof(float *));
+  	d_coarse_buffer = (float**)malloc(BTT_NUM * sizeof(float *));
+  	h_coarse_weight = (float**)malloc(BTT_NUM * sizeof(float *));
+  	h_coarse_buffer = (float**)malloc(BTT_NUM * sizeof(float *));
 
-  	h_inputs = (float**)malloc(BT_NUM * sizeof(float *));
-  	h_predec = (float**)malloc(BT_NUM * sizeof(float *));
-  	h_postdec = (float**)malloc(BT_NUM * sizeof(float *));
-  	d_inputs = (float**)malloc(BT_NUM * sizeof(float *));
-  	d_predec = (float**)malloc(BT_NUM * sizeof(float *));
-  	d_postdec = (float**)malloc(BT_NUM * sizeof(float *));
-  	hh_postdec = (float**)malloc(BT_NUM * sizeof(float *));
+  	h_inputs = (float**)malloc(BTT_NUM * sizeof(float *));
+  	h_predec = (float**)malloc(BTT_NUM * sizeof(float *));
+  	h_postdec = (float**)malloc(BTT_NUM * sizeof(float *));
+  	d_inputs = (float**)malloc(BTT_NUM * sizeof(float *));
+  	d_predec = (float**)malloc(BTT_NUM * sizeof(float *));
+  	d_postdec = (float**)malloc(BTT_NUM * sizeof(float *));
+  	hh_postdec = (float**)malloc(BTT_NUM * sizeof(float *));
 
-  	for(i = 0; i < BT_NUM; i++){
+  	for(i = 0; i < BTT_NUM; i++){
     		checkCudaErrors(cudaHostAlloc(&h_inputs[i], 2*num_size[i]*sizeof(float), cudaHostAllocDefault));
     		checkCudaErrors(cudaHostAlloc(&h_postdec[i], 2*num_size[i]*sizeof(float), cudaHostAllocDefault));
     		checkCudaErrors(cudaHostAlloc(&h_coarse_weight[i], 2*num_size[i]*sizeof(float), cudaHostAllocDefault));
@@ -114,14 +116,14 @@ int main(){
 
 	printf("Inputs are generating\n");
   	// init data
-  	for(i = 0; i < BT_NUM; i++){
+  	for(i = 0; i < BTT_NUM; i++){
     		BeamFirSetup(h_coarse_weight[i], h_coarse_buffer[i], num_size[i]);
     		InputGenerate(h_inputs[i], num_size[i]);
   	}
 
   	// input transfer
   	start_timer = my_timer();
-  	for(i = 0; i < BT_NUM; i++){
+  	for(i = 0; i < BTT_NUM; i++){
     		checkCudaErrors(cudaMemcpy(d_inputs[i], h_inputs[i], 2*num_size[i]*sizeof(float), cudaMemcpyHostToDevice));
     		checkCudaErrors(cudaMemcpy(d_coarse_weight[i], h_coarse_weight[i], 2*num_size[i]*sizeof(float), cudaMemcpyHostToDevice));
     		checkCudaErrors(cudaMemcpy(d_coarse_buffer[i], h_coarse_buffer[i], 2*num_size[i]*sizeof(float), cudaMemcpyHostToDevice));
@@ -135,7 +137,7 @@ int main(){
 	printf("GPU program is running\n");
   	// task running
   	start_timer = my_timer();
-  	for(i = 0; i < BT_NUM; i++){
+  	for(i = 0; i < BTT_NUM; i++){
     		d_BeamFirFilter<<<TK_NUM, TDK_NUM>>>(d_len[i],
                         d_coarse_weight[i], d_coarse_buffer[i],
                         d_inputs[i], d_predec[i], pos_task_dev[i], d_num_thread, i);
@@ -143,7 +145,7 @@ int main(){
  	}
   	checkCudaErrors(cudaDeviceSynchronize());
 
-  	for(i = 0; i < BT_NUM; i++){
+  	for(i = 0; i < BTT_NUM; i++){
     		d_BeamFirFilter<<<TK_NUM, TDK_NUM>>>(d_len[i],
                         d_coarse_weight[i], d_coarse_buffer[i],
                         d_predec[i], d_postdec[i], pos_task_dev[i], d_num_thread, i);
@@ -155,7 +157,7 @@ int main(){
 
   	// copy back
   	start_timer = my_timer();
-  	for (i = 0; i < BT_NUM; i++) {
+  	for (i = 0; i < BTT_NUM; i++) {
     		checkCudaErrors(cudaMemcpyAsync(h_postdec[i], d_postdec[i], 2*num_size[i]*sizeof(float), cudaMemcpyDeviceToHost));
   	}
   	checkCudaErrors(cudaDeviceSynchronize());
@@ -163,12 +165,12 @@ int main(){
 #if 0
   	//host task running
   	start_timer = my_timer();
-  	for(i = 0; i < BT_NUM; i++){
+  	for(i = 0; i < BTT_NUM; i++){
     		BeamFirFilter(len[i],
                    h_coarse_weight[i], h_coarse_buffer[i],
                    h_inputs[i], h_predec[i], pos_task[i]);
   	}
-  	for(i = 0; i < BT_NUM; i++){
+  	for(i = 0; i < BTT_NUM; i++){
     		BeamFirFilter(len[i],
                    h_coarse_weight[i], h_coarse_buffer[i],
                    h_predec[i], hh_postdec[i], pos_task[i]);
@@ -189,7 +191,7 @@ int main(){
 
 #endif
   	//free mem
-  	for(i = 0; i < BT_NUM; i++){
+  	for(i = 0; i < BTT_NUM; i++){
 
     		checkCudaErrors(cudaFreeHost(h_inputs[i]));
    	 	checkCudaErrors(cudaFreeHost(h_postdec[i]));

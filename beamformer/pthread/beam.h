@@ -3,7 +3,10 @@
 
 #include "../../common/para.h"
 
-#define LOOP_NUM (BT_NUM)
+#define TKK_NUM 19200
+#define BTT_NUM (TKK_NUM/TK_NUM)
+
+#define LOOP_NUM (BTT_NUM)
 #define sub_task (TK_NUM)
 #define NUM_CHANNELS (LOOP_NUM*sub_task)
 #define THREADSTACK  65536

@@ -7,7 +7,10 @@
 #include <cuda_runtime.h>
 #include <helper_cuda.h>
 #include "../../common/para.h"
-#define NUM_CHAN (TK_NUM * BT_NUM)
+
+#define TKK_NUM 19200
+#define BTT_NUM (TKK_NUM/TK_NUM)
+#define NUM_CHAN (TK_NUM * BTT_NUM)
 
 double my_timer()
 {
