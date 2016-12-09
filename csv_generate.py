@@ -13,8 +13,8 @@ baseline = []
 pthread = []
 
 pagoda.append("Pagoda")
-fusion.append("CUDA Fusion")
 baseline.append("CUDA Baseline")
+fusion.append("CUDA Fusion")
 pthread.append("pthread")
 
 line = shakes.readlines()
@@ -34,10 +34,10 @@ for i in range(0,len(line)):
 			pagoda.append(s)
 		if(cat_count == 2):
 			s = '%.4f' % float(total/3)
-			fusion.append(s)
+			baseline.append(s)
 		if(cat_count == 3):
 			s = '%.4f' % float(total/3)
-			baseline.append(s)
+			fusion.append(s)
 		if(cat_count == 4):
 			s = '%.4f' % float(total/3)
 			pthread.append(s)
