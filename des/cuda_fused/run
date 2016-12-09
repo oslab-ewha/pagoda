@@ -1,6 +1,6 @@
 #!/bin/sh
 n=0
-RUN=4
+RUN=2
 while [  $n -le $RUN ]; do
 	./des
 	sleep 2
